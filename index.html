@@ -1,0 +1,1843 @@
+conteudo-estrategico/
+│
+├── <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Conteúdo Estratégico | Ideias para Redes Sociais</title>
+
+  <meta
+    name="description"
+    content="Transforme as informações do seu negócio em ideias de conteúdo estratégicas para Instagram e Facebook."
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #080808;
+      --bg-light: #111111;
+      --card: #151515;
+      --card-hover: #1b1b1b;
+      --text: #ffffff;
+      --muted: #b5b5b5;
+      --primary: #ff6b00;
+      --primary-dark: #d95700;
+      --border: rgba(255,255,255,0.10);
+      --success: #25d366;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 90px 0 70px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,107,0,0.18), transparent 40%);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,107,0,0.35);
+      background: rgba(255,107,0,0.08);
+      color: #ff9b55;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0 auto 22px;
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 25px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      border: none;
+      transition: 0.2s;
+    }
+
+    .primary-btn {
+      background: var(--primary);
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: white;
+    }
+
+    .secondary-btn:hover {
+      background: var(--card);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: #8f8f8f;
+      font-size: 13px;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 75px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 45px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* HOW */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 18px;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--primary);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      margin-bottom: 9px;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: var(--muted);
+    }
+
+    /* VIDEO */
+
+    .video-box {
+      max-width: 850px;
+      min-height: 430px;
+      margin: auto;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, #151515, #0e0e0e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .video-content {
+      max-width: 550px;
+    }
+
+    .play {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+    }
+
+    .video-box h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .video-box p {
+      color: var(--muted);
+    }
+
+    /* TOOL */
+
+    .tool-section {
+      background: #0d0d0d;
+    }
+
+    .tool-box {
+      max-width: 850px;
+      margin: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: clamp(22px, 5vw, 45px);
+    }
+
+    .tool-intro {
+      margin-bottom: 30px;
+    }
+
+    .tool-intro h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .tool-intro p {
+      color: var(--muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #0c0c0c;
+      color: white;
+      border-radius: 10px;
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .generate-btn {
+      width: 100%;
+      margin-top: 25px;
+      min-height: 54px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    .generate-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .result {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result-title {
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+
+    .idea-card {
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    .idea-card h4 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .idea-card p {
+      color: #ddd;
+      margin-bottom: 8px;
+    }
+
+    .copy-prompt {
+      margin-top: 15px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #050505;
+      border: 1px solid var(--border);
+      color: #bbb;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: white;
+      padding: 9px 13px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      background: var(--card-hover);
+    }
+
+    .error {
+      display: none;
+      margin-top: 18px;
+      padding: 13px;
+      border-radius: 10px;
+      background: rgba(255,0,0,0.08);
+      border: 1px solid rgba(255,0,0,0.2);
+      color: #ff8585;
+    }
+
+    /* PACKAGES */
+
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .package {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .package.featured {
+      border-color: var(--primary);
+      transform: translateY(-8px);
+    }
+
+    .popular {
+      position: absolute;
+      top: -13px;
+      left: 20px;
+      background: var(--primary);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .package h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 42px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .price small {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .package ul {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    .package li {
+      margin: 11px 0;
+      color: #ddd;
+    }
+
+    .package li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 800;
+      margin-right: 8px;
+    }
+
+    .package-btn {
+      margin-top: auto;
+      display: block;
+      width: 100%;
+      padding: 13px;
+      text-align: center;
+      border-radius: 10px;
+      background: var(--primary);
+      font-weight: 800;
+    }
+
+    .package-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .delivery-note {
+      text-align: center;
+      margin-top: 25px;
+      color: var(--muted);
+    }
+
+    /* BENEFITS */
+
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--card);
+    }
+
+    .benefit-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .benefit h3 {
+      margin-bottom: 8px;
+    }
+
+    .benefit p {
+      color: var(--muted);
+    }
+
+    /* CTA */
+
+    .final-cta {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(255,107,0,0.15), transparent 55%);
+    }
+
+    .final-cta h2 {
+      font-size: clamp(32px, 5vw, 55px);
+      margin-bottom: 15px;
+    }
+
+    .final-cta p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+
+      .steps,
+      .packages,
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+
+      .package.featured {
+        transform: none;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .nav-btn {
+        display: none;
+      }
+
+      .video-box {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="container nav">
+
+      <div class="logo">
+        Conteúdo<span>Estratégico</span>
+      </div>
+
+      <a
+        href="#ferramenta"
+        class="nav-btn"
+      >
+        Gerar ideias grátis
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="badge">
+          ✨ Ferramenta gratuita de ideias para conteúdo
+        </div>
+
+        <h1>
+          Pare de perder horas
+          <span>pensando no que postar.</span>
+        </h1>
+
+        <p>
+          Transforme as informações do seu negócio em
+          ideias de conteúdo estratégicas para Instagram
+          e Facebook.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            href="#ferramenta"
+            class="primary-btn"
+          >
+            🚀 Gerar minhas ideias gratuitamente
+          </a>
+
+          <a
+            href="#pacotes"
+            class="secondary-btn"
+          >
+            Conhecer os pacotes
+          </a>
+
+        </div>
+
+        <div class="hero-note">
+          Receba 3 ideias personalizadas gratuitamente.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- COMO FUNCIONA -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <h2>
+            Transforme seu negócio em conteúdo.
+          </h2>
+
+          <p>
+            Você fornece as informações. A ferramenta
+            ajuda a transformar tudo em ideias organizadas
+            para suas redes sociais.
+          </p>
+
+        </div>
+
+
+        <div class="steps">
+
+          <div class="step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <h3>
+              Conte sobre seu negócio
+            </h3>
+
+            <p>
+              Responda algumas perguntas sobre sua empresa,
+              público, produtos e objetivos.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <h3>
+              Gere suas ideias
+            </h3>
+
+            <p>
+              A ferramenta analisa suas informações e
+              estrutura ideias específicas para o seu negócio.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <h3>
+              Publique ou peça para nós
+            </h3>
+
+            <p>
+              Use as ideias gratuitamente ou contrate nosso
+              serviço para receber seus conteúdos prontos.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- VÍDEO -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <h2>
+            Veja como funciona
+          </h2>
+
+          <p>
+            Aprenda rapidamente como usar a ferramenta
+            e como podemos cuidar do seu conteúdo.
+          </p>
+
+        </div>
+
+
+        <div class="video-box">
+
+          <div class="video-content">
+
+            <div class="play">
+              ▶
+            </div>
+
+            <h3>
+              Vídeo de apresentação
+            </h3>
+
+            <p>
+              Aqui você poderá colocar seu vídeo mostrando
+              como utilizar a ferramenta e apresentando
+              seus serviços.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FERRAMENTA -->
+
+    <section
+      id="ferramenta"
+      class="tool-section"
+    >
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <h2>
+            🎯 Gere suas ideias gratuitamente
+          </h2>
+
+          <p>
+            Responda as perguntas abaixo e receba
+            3 sugestões personalizadas.
+          </p>
+
+        </div>
+
+
+        <div class="tool-box">
+
+          <div class="tool-intro">
+
+            <h3>
+              Sobre o seu negócio
+            </h3>
+
+            <p>
+              Quanto mais informações você fornecer,
+              mais específicas serão as ideias.
+            </p>
+
+          </div>
+
+
+          <form id="contentForm">
+
+            <div class="form-grid">
+
+
+              <div class="field">
+
+                <label for="segmento">
+                  1. Qual é o segmento da empresa?
+                </label>
+
+                <input
+                  id="segmento"
+                  name="segmento"
+                  type="text"
+                  placeholder="Ex.: Restaurante, estética, consultoria..."
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="publico">
+                  2. Quem é o público-alvo?
+                </label>
+
+                <input
+                  id="publico"
+                  name="publico"
+                  type="text"
+                  placeholder="Descreva seu público"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="persona">
+                  3. Qual é a persona?
+                </label>
+
+                <textarea
+                  id="persona"
+                  name="persona"
+                  placeholder="Descreva o cliente ideal..."
+                  required
+                ></textarea>
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="produto">
+                  4. O que você vende ou oferece?
+                </label>
+
+                <textarea
+                  id="produto"
+                  name="produto"
+                  placeholder="Produtos, serviços ou ofertas..."
+                  required
+                ></textarea>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="objetivo">
+                  5. Qual é o objetivo dos conteúdos?
+                </label>
+
+                <select
+                  id="objetivo"
+                  name="objetivo"
+                  required
+                >
+
+                  <option value="">
+                    Selecione
+                  </option>
+
+                  <option value="Atrair">
+                    Atrair clientes
+                  </option>
+
+                  <option value="Autoridade">
+                    Gerar autoridade
+                  </option>
+
+                  <option value="Conversão">
+                    Gerar vendas
+                  </option>
+
+                  <option value="Engajamento">
+                    Gerar engajamento
+                  </option>
+
+                  <option value="Educação">
+                    Educar o público
+                  </option>
+
+                  <option value="Conexão">
+                    Criar conexão
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="tom">
+                  6. Como deve ser a comunicação?
+                </label>
+
+                <input
+                  id="tom"
+                  name="tom"
+                  type="text"
+                  placeholder="Ex.: simples, profissional, persuasiva..."
+                  required
+                >
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="diferencial">
+                  7. Qual é o diferencial do seu negócio?
+                </label>
+
+                <textarea
+                  id="diferencial"
+                  name="diferencial"
+                  placeholder="O que faz sua empresa ser diferente?"
+                ></textarea>
+
+              </div>
+
+
+              <div class="field full">
+
+                <label for="tema">
+                  8. Existe algum tema ou oferta que deseja divulgar?
+                </label>
+
+                <textarea
+                  id="tema"
+                  name="tema"
+                  placeholder="Descreva o produto, serviço ou assunto..."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="generate-btn"
+              id="generateButton"
+            >
+              ✨ Gerar minhas 3 ideias gratuitamente
+            </button>
+
+          </form>
+
+
+          <div
+            id="error"
+            class="error"
+          ></div>
+
+
+          <div
+            id="result"
+            class="result"
+          >
+
+            <h3 class="result-title">
+              🎯 Suas ideias de conteúdo
+            </h3>
+
+            <div id="ideasContainer"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- BENEFÍCIOS -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <h2>
+            Conteúdo com mais estratégia.
+          </h2>
+
+          <p>
+            Não se trata apenas de publicar.
+            Trata-se de saber por que você está publicando.
+          </p>
+
+        </div>
+
+
+        <div class="benefits">
+
+          <div class="benefit">
+
+            <div class="benefit-icon">
+              ⏱️
+            </div>
+
+            <h3>
+              Economize tempo
+            </h3>
+
+            <p>
+              Pare de gastar horas tentando descobrir
+              o que publicar.
+            </p>
+
+          </div>
+
+
+          <div class="benefit">
+
+            <div class="benefit-icon">
+              🎯
+            </div>
+
+            <h3>
+              Conteúdo direcionado
+            </h3>
+
+            <p>
+              Crie ideias alinhadas ao seu público,
+              objetivo e negócio.
+            </p>
+
+          </div>
+
+
+          <div class="benefit">
+
+            <div class="benefit-icon">
+              📲
+            </div>
+
+            <h3>
+              Mantenha seu perfil ativo
+            </h3>
+
+            <p>
+              Tenha uma rotina de conteúdo mais organizada
+              para suas redes sociais.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PACOTES -->
+
+    <section
+      id="pacotes"
+      class="tool-section"
+    >
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <h2>
+            Quer deixar a criação comigo?
+          </h2>
+
+          <p>
+            Escolha seu pacote semanal e receba conteúdos
+            personalizados para o seu negócio.
+          </p>
+
+        </div>
+
+
+        <div class="packages">
+
+
+          <!-- PACOTE 1 -->
+
+          <div class="package">
+
+            <h3>
+              🚀 Essencial
+            </h3>
+
+            <div class="price">
+              R$50
+              <small>/semana</small>
+            </div>
+
+            <ul>
+
+              <li>
+                7 posts
+              </li>
+
+              <li>
+                Conteúdo personalizado
+              </li>
+
+              <li>
+                Copies para as publicações
+              </li>
+
+              <li>
+                Artes para os posts
+              </li>
+
+            </ul>
+
+            <a
+              class="package-btn whatsapp-link"
+              data-package="Pacote Essencial - 7 posts por R$50"
+              href="#"
+            >
+              Quero este pacote
+            </a>
+
+          </div>
+
+
+          <!-- PACOTE 2 -->
+
+          <div class="package featured">
+
+            <div class="popular">
+              MAIS ESCOLHIDO
+            </div>
+
+            <h3>
+              🔥 Estratégico
+            </h3>
+
+            <div class="price">
+              R$70
+              <small>/semana</small>
+            </div>
+
+            <ul>
+
+              <li>
+                7 posts
+              </li>
+
+              <li>
+                2 carrosséis
+              </li>
+
+              <li>
+                Conteúdo personalizado
+              </li>
+
+              <li>
+                Copies estratégicas
+              </li>
+
+              <li>
+                Artes para os posts
+              </li>
+
+            </ul>
+
+            <a
+              class="package-btn whatsapp-link"
+              data-package="Pacote Estratégico - 7 posts + 2 carrosséis por R$70"
+              href="#"
+            >
+              Quero este pacote
+            </a>
+
+          </div>
+
+
+          <!-- PACOTE 3 -->
+
+          <div class="package">
+
+            <h3>
+              🎬 Completo
+            </h3>
+
+            <div class="price">
+              R$90
+              <small>/semana</small>
+            </div>
+
+            <ul>
+
+              <li>
+                7 publicações
+              </li>
+
+              <li>
+                1 carrossel
+              </li>
+
+              <li>
+                2 Reels
+              </li>
+
+              <li>
+                Conteúdo personalizado
+              </li>
+
+              <li>
+                Copies e estrutura dos conteúdos
+              </li>
+
+            </ul>
+
+            <a
+              class="package-btn whatsapp-link"
+              data-package="Pacote Completo - 7 publicações + 1 carrossel + 2 Reels por R$90"
+              href="#"
+            >
+              Quero este pacote
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <p class="delivery-note">
+          ⏱️ Prazo de entrega: até 36h após a confirmação do pedido.
+          <br>
+          💳 O pagamento é realizado antes da produção e entrega.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA FINAL -->
+
+    <section class="final-cta">
+
+      <div class="container">
+
+        <h2>
+          Seu próximo conteúdo
+          pode começar agora.
+        </h2>
+
+        <p>
+          Descubra gratuitamente algumas ideias para o
+          seu negócio e, se quiser, deixe a produção comigo.
+        </p>
+
+        <a
+          href="#ferramenta"
+          class="primary-btn"
+        >
+          🚀 Gerar minhas ideias
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container">
+
+      © 2026 Conteúdo Estratégico.
+      Conteúdo para redes sociais.
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /*
+      ============================================================
+      CONFIGURAÇÃO
+      ============================================================
+
+      IMPORTANTE:
+
+      Não coloque sua chave Gemini aqui.
+
+      O navegador vai enviar os dados para:
+
+      /api/generate
+
+      Depois criaremos essa rota no Cloudflare Functions.
+    */
+
+
+    const form = document.getElementById("contentForm");
+
+    const button = document.getElementById("generateButton");
+
+    const result = document.getElementById("result");
+
+    const ideasContainer =
+      document.getElementById("ideasContainer");
+
+    const errorBox =
+      document.getElementById("error");
+
+
+    /*
+      ============================================================
+      FORMULÁRIO
+      ============================================================
+    */
+
+    form.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+
+      button.disabled = true;
+
+      button.innerText = "⏳ Criando suas ideias...";
+
+      errorBox.style.display = "none";
+
+      result.classList.remove("show");
+
+
+      const formData = new FormData(form);
+
+
+      const data = {
+
+        segmento: formData.get("segmento"),
+
+        publico: formData.get("publico"),
+
+        persona: formData.get("persona"),
+
+        produto: formData.get("produto"),
+
+        objetivo: formData.get("objetivo"),
+
+        tom: formData.get("tom"),
+
+        diferencial: formData.get("diferencial"),
+
+        tema: formData.get("tema")
+
+      };
+
+
+      try {
+
+        const response = await fetch(
+          "/api/generate",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(data)
+          }
+        );
+
+
+        const responseData =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            responseData.error ||
+            "Não foi possível gerar as ideias."
+          );
+
+        }
+
+
+        /*
+          O backend deverá retornar:
+
+          {
+            ideas: [
+              {
+                title: "...",
+                format: "...",
+                objective: "...",
+                hook: "...",
+                development: "...",
+                caption: "...",
+                cta: "...",
+                imagePrompt: "..."
+              }
+            ]
+          }
+        */
+
+
+        displayIdeas(responseData.ideas);
+
+
+        result.classList.add("show");
+
+
+        result.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+
+      } catch (error) {
+
+        errorBox.innerText =
+          "⚠️ " + error.message;
+
+        errorBox.style.display = "block";
+
+      } finally {
+
+        button.disabled = false;
+
+        button.innerText =
+          "✨ Gerar minhas 3 ideias gratuitamente";
+
+      }
+
+    });
+
+
+    /*
+      ============================================================
+      MOSTRAR IDEIAS
+      ============================================================
+    */
+
+    function displayIdeas(ideas) {
+
+      ideasContainer.innerHTML = "";
+
+
+      if (!Array.isArray(ideas)) {
+
+        throw new Error(
+          "A resposta da IA não está no formato esperado."
+        );
+
+      }
+
+
+      ideas.forEach(function(idea, index) {
+
+        const card =
+          document.createElement("div");
+
+        card.className = "idea-card";
+
+
+        card.innerHTML = `
+
+          <h4>
+            IDEIA ${index + 1}
+          </h4>
+
+          <p>
+            <strong>📝 Título:</strong>
+            ${escapeHTML(idea.title || "")}
+          </p>
+
+          <p>
+            <strong>📲 Formato:</strong>
+            ${escapeHTML(idea.format || "")}
+          </p>
+
+          <p>
+            <strong>🎯 Objetivo:</strong>
+            ${escapeHTML(idea.objective || "")}
+          </p>
+
+          <p>
+            <strong>🪝 Gancho:</strong>
+            ${escapeHTML(idea.hook || "")}
+          </p>
+
+          <p>
+            <strong>💡 Desenvolvimento:</strong>
+            ${escapeHTML(idea.development || "")}
+          </p>
+
+          <p>
+            <strong>✍️ Legenda:</strong>
+            ${escapeHTML(idea.caption || "")}
+          </p>
+
+          <p>
+            <strong>👉 CTA:</strong>
+            ${escapeHTML(idea.cta || "")}
+          </p>
+
+          <div class="copy-prompt">
+            <strong>🎨 Prompt para gerar a arte:</strong>
+
+            <br><br>
+
+            ${escapeHTML(idea.imagePrompt || "")}
+          </div>
+
+          <button
+            class="copy-btn"
+            onclick="copyPrompt(this)"
+            data-prompt="${escapeAttribute(idea.imagePrompt || "")}"
+          >
+            📋 Copiar prompt da arte
+          </button>
+
+        `;
+
+
+        ideasContainer.appendChild(card);
+
+      });
+
+
+      /*
+        CTA DE VENDA APÓS AS IDEIAS
+      */
+
+      const salesBox =
+        document.createElement("div");
+
+
+      salesBox.style.cssText = `
+        margin-top: 30px;
+        padding: 25px;
+        border-radius: 16px;
+        background: linear-gradient(
+          135deg,
+          rgba(255,107,0,0.18),
+          rgba(255,107,0,0.04)
+        );
+        border: 1px solid rgba(255,107,0,0.3);
+        text-align: center;
+      `;
+
+
+      salesBox.innerHTML = `
+
+        <h3 style="font-size:25px;margin-bottom:10px;">
+          Gostou das ideias? 🔥
+        </h3>
+
+        <p style="color:#bbb;margin-bottom:20px;">
+          Eu também posso criar sua semana de conteúdo
+          para você, com posts personalizados.
+        </p>
+
+        <a
+          href="#pacotes"
+          class="primary-btn"
+        >
+          Quero conhecer os pacotes
+        </a>
+
+      `;
+
+
+      ideasContainer.appendChild(salesBox);
+
+    }
+
+
+    /*
+      ============================================================
+      COPIAR PROMPT
+      ============================================================
+    */
+
+    async function copyPrompt(button) {
+
+      const prompt =
+        button.getAttribute("data-prompt");
+
+
+      try {
+
+        await navigator.clipboard.writeText(prompt);
+
+
+        const originalText =
+          button.innerText;
+
+
+        button.innerText =
+          "✅ Prompt copiado!";
+
+
+        setTimeout(function() {
+
+          button.innerText =
+            originalText;
+
+        }, 1800);
+
+
+      } catch (error) {
+
+        alert(
+          "Não foi possível copiar automaticamente."
+        );
+
+      }
+
+    }
+
+
+    /*
+      ============================================================
+      SEGURANÇA VISUAL
+      ============================================================
+    */
+
+    function escapeHTML(value) {
+
+      return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return String(value)
+
+        .replace(/&/g, "&amp;")
+
+        .replace(/"/g, "&quot;")
+
+        .replace(/</g, "&lt;")
+
+        .replace(/>/g, "&gt;");
+
+    }
+
+
+    /*
+      ============================================================
+      WHATSAPP
+      ============================================================
+    */
+
+    /*
+      TROQUE:
+
+      55SEUNUMERO
+
+      pelo número do seu WhatsApp.
+
+      Exemplo:
+
+      5531999999999
+
+      Não coloque +, espaços ou parênteses.
+    */
+
+    const whatsappNumber =
+      "55319931007486";
+
+
+    document
+      .querySelectorAll(".whatsapp-link")
+      .forEach(function(link) {
+
+        link.addEventListener("click", function(event) {
+
+          event.preventDefault();
+
+
+          const packageName =
+            link.getAttribute("data-package");
+
+
+          const message =
+            `Olá! Tenho interesse no ${packageName}. Quero saber como contratar.`;
+
+
+          const url =
+            `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+
+          window.open(
+            url,
+            "_blank"
+          );
+
+        });
+
+      });
+
+  </script>
+
+</body>
+</html>
+│
+├── style.css
+│
+├── script.js
+│
+└── functions/
+    └── generate.js
