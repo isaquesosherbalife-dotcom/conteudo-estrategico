@@ -1840,4 +1840,384 @@ conteudo-estrategico/
 ├── script.js
 │
 └── functions/
-    └── generate.js
+└── api/
+    └── export async function onRequestPost(context) {
+  try {
+    const body = await context.request.json();
+
+    const {
+      segment,
+      audience,
+      persona,
+      product,
+      objective,
+      tone,
+      differentiator,
+      theme
+    } = body;
+
+    if (!segment || !audience || !product || !objective) {
+      return Response.json(
+        {
+          error: "Preencha pelo menos segmento, público, produto/serviço e objetivo."
+        },
+        { status: 400 }
+      );
+    }
+
+    const apiKey = context.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
+      return Response.json(
+        {
+          error: "A chave da IA ainda não foi configurada no Cloudflare."
+        },
+        { status: 500 }
+      );
+    }
+
+    const prompt = `
+Você é um estrategista de conteúdo, copywriter e especialista em marketing
+digital para pequenos negócios, prestadores de serviços e empreendedores.
+
+Sua função NÃO é simplesmente criar posts genéricos.
+
+Você deve analisar as informações do negócio e transformar essas informações
+em conteúdos estratégicos capazes de gerar atenção, conexão, autoridade,
+desejo e ação.
+
+========================
+INFORMAÇÕES DO NEGÓCIO
+========================
+
+Segmento:
+${segment}
+
+Público-alvo:
+${audience}
+
+Persona:
+${persona || "Não informado"}
+
+Produto ou serviço:
+${product}
+
+Objetivo principal:
+${objective}
+
+Tom de comunicação:
+${tone || "Profissional, simples, humano e persuasivo"}
+
+Diferencial:
+${differentiator || "Não informado"}
+
+Tema, oferta ou assunto que deseja promover:
+${theme || "Não informado"}
+
+========================
+METODOLOGIA DE COPYWRITING
+========================
+
+Para cada conteúdo:
+
+1. IDENTIFIQUE A INTENÇÃO
+
+Determine silenciosamente qual é a melhor função daquele conteúdo:
+
+- chamar atenção;
+- gerar identificação;
+- educar;
+- despertar desejo;
+- quebrar uma objeção;
+- demonstrar autoridade;
+- gerar confiança;
+- estimular uma ação.
+
+2. CRIE UM GANCHO
+
+O início precisa fazer a pessoa querer continuar lendo.
+
+Evite frases genéricas como:
+
+"Confira essas dicas"
+"Você sabia?"
+"Hoje vamos falar sobre..."
+"5 dicas para melhorar seu negócio"
+
+Prefira ganchos baseados em:
+
+- problema real;
+- desejo;
+- curiosidade;
+- erro comum;
+- oportunidade;
+- contraste;
+- benefício;
+- objeção;
+- transformação.
+
+3. DESENVOLVA A IDEIA
+
+O conteúdo deve ter lógica.
+
+Sempre que fizer sentido, siga:
+
+Gancho
+→ Problema ou contexto
+→ Identificação
+→ Insight
+→ Solução/benefício
+→ Direcionamento
+→ CTA
+
+Não force essa estrutura quando outro formato for mais natural.
+
+4. ESCREVA PARA A PERSONA
+
+Use linguagem compatível com o público informado.
+
+Não escreva como um robô.
+
+Evite excesso de palavras difíceis, clichês e frases vazias.
+
+5. VENDA SEM PARECER UM ANÚNCIO O TEMPO TODO
+
+Nem todo conteúdo deve vender diretamente.
+
+Crie equilíbrio entre:
+
+- valor;
+- relacionamento;
+- autoridade;
+- desejo;
+- conversão.
+
+6. DIFERENCIAÇÃO
+
+Sempre que possível, utilize o diferencial informado pelo negócio.
+
+O conteúdo deve deixar claro por que aquela empresa/profissional
+pode ser relevante para o cliente.
+
+7. CTA
+
+O CTA deve combinar com o objetivo do conteúdo.
+
+Exemplos:
+
+- comentar;
+- salvar;
+- compartilhar;
+- enviar mensagem;
+- pedir orçamento;
+- conhecer o serviço;
+- clicar;
+- chamar no WhatsApp.
+
+Não use sempre "clique no link".
+
+========================
+ESTRATÉGIA DOS 3 CONTEÚDOS
+========================
+
+Crie exatamente 3 ideias diferentes:
+
+CONTEÚDO 1 — CONEXÃO/ATENÇÃO
+Deve gerar identificação ou chamar atenção para um problema,
+desejo ou situação vivida pela persona.
+
+CONTEÚDO 2 — AUTORIDADE/VALOR
+Deve ensinar algo útil, quebrar uma crença, explicar algo
+ou demonstrar conhecimento.
+
+CONTEÚDO 3 — CONVERSÃO
+Deve aproximar a pessoa da solução oferecida pelo negócio,
+apresentando benefício, diferencial ou oportunidade de compra.
+
+Os três conteúdos devem ser diferentes entre si.
+
+Evite repetir o mesmo argumento.
+
+========================
+PROMPT PARA IMAGEM
+========================
+
+Crie também um prompt detalhado para geração de imagem.
+
+O prompt deve descrever:
+
+- pessoa ou objeto principal;
+- ambiente;
+- ação;
+- composição;
+- iluminação;
+- estilo visual;
+- enquadramento;
+- sensação transmitida;
+- elementos relacionados ao negócio.
+
+Não coloque textos dentro da imagem, a menos que isso seja
+essencial para o conceito.
+
+========================
+PROMPT PARA COPY
+========================
+
+Crie também um prompt que o usuário possa copiar e utilizar
+em outra IA para desenvolver ou adaptar aquela ideia.
+
+========================
+REGRAS
+========================
+
+- Responda em português do Brasil.
+- Não invente informações específicas sobre a empresa.
+- Não invente depoimentos, números, resultados ou provas.
+- Não prometa resultados garantidos.
+- Não utilize clichês excessivos.
+- Não repita estruturas.
+- Seja específico.
+- Priorize clareza.
+- Escreva de maneira humana.
+- O conteúdo precisa ser útil mesmo para quem ainda não conhece a empresa.
+
+Retorne SOMENTE JSON válido seguindo exatamente este formato:
+
+{
+  "ideas": [
+    {
+      "title": "Título da ideia",
+      "format": "Formato recomendado",
+      "objective": "Objetivo",
+      "hook": "Gancho",
+      "development": "Desenvolvimento da ideia",
+      "caption": "Legenda pronta",
+      "cta": "CTA",
+      "image_prompt": "Prompt detalhado para geração da imagem",
+      "copy_prompt": "Prompt pronto para copiar"
+    }
+  ]
+}
+`;
+
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [
+                {
+                  text: prompt
+                }
+              ]
+            }
+          ],
+          generationConfig: {
+            temperature: 0.8,
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: "object",
+              properties: {
+                ideas: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      title: {
+                        type: "string"
+                      },
+                      format: {
+                        type: "string"
+                      },
+                      objective: {
+                        type: "string"
+                      },
+                      hook: {
+                        type: "string"
+                      },
+                      development: {
+                        type: "string"
+                      },
+                      caption: {
+                        type: "string"
+                      },
+                      cta: {
+                        type: "string"
+                      },
+                      image_prompt: {
+                        type: "string"
+                      },
+                      copy_prompt: {
+                        type: "string"
+                      }
+                    },
+                    required: [
+                      "title",
+                      "format",
+                      "objective",
+                      "hook",
+                      "development",
+                      "caption",
+                      "cta",
+                      "image_prompt",
+                      "copy_prompt"
+                    ]
+                  }
+                }
+              },
+              required: ["ideas"]
+            }
+          }
+        })
+      }
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+
+      console.error("Gemini API error:", errorText);
+
+      return Response.json(
+        {
+          error: "Não foi possível gerar os conteúdos agora."
+        },
+        { status: 500 }
+      );
+    }
+
+    const data = await response.json();
+
+    const text =
+      data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!text) {
+      return Response.json(
+        {
+          error: "A IA não retornou conteúdo."
+        },
+        { status: 500 }
+      );
+    }
+
+    const result = JSON.parse(text);
+
+    return Response.json(result);
+
+  } catch (error) {
+    console.error("Function error:", error);
+
+    return Response.json(
+      {
+        error: "Ocorreu um erro ao gerar os conteúdos."
+      },
+      { status: 500 }
+    );
+  }
+}
