@@ -1,0 +1,5 @@
+name = "conteudo-estrategico"
+compatibility_date = "2024-01-01"
+
+[vars]
+MINHA_VARIAVEL = "seu_valor_aqui"
