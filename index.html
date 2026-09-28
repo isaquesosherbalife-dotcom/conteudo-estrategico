@@ -1,7 +1,6 @@
 conteudo-estrategico/
 │
-├── <!DOCTYPE html>
-<html lang="pt-BR">
+├── <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -2022,8 +2021,664 @@ conteudo-estrategico/
   </script>
 
 </body>
-</html>
+</html>index.html
 │
 └── functions/
     └── api/
-        └── generate.js
+        └── export async function onRequestPost(context) {
+  try {
+    /*
+     * ================================
+     * 1. RECEBER DADOS DO FRONTEND
+     * ================================
+     */
+
+    const body = await context.request.json();
+
+
+    /*
+     * IMPORTANTE:
+     * Estes nomes precisam ser exatamente
+     * os mesmos enviados pelo index.html.
+     */
+
+    const {
+      segmento,
+      publico,
+      persona,
+      produto,
+      objetivo,
+      tom,
+      diferencial,
+      tema
+    } = body;
+
+
+    /*
+     * ================================
+     * 2. VALIDAR CAMPOS OBRIGATÓRIOS
+     * ================================
+     */
+
+    if (
+      !segmento ||
+      !publico ||
+      !produto ||
+      !objetivo
+    ) {
+      return Response.json(
+        {
+          error:
+            "Preencha pelo menos segmento, público, produto/serviço e objetivo."
+        },
+        {
+          status: 400
+        }
+      );
+    }
+
+
+    /*
+     * ================================
+     * 3. PEGAR A CHAVE DO GEMINI
+     * ================================
+     *
+     * A chave NÃO deve estar no HTML.
+     *
+     * Ela precisa estar configurada
+     * no Cloudflare como:
+     *
+     * GEMINI_API_KEY
+     */
+
+    const apiKey =
+      context.env.GEMINI_API_KEY;
+
+
+    if (!apiKey) {
+
+      return Response.json(
+        {
+          error:
+            "A chave da IA ainda não foi configurada no Cloudflare."
+        },
+        {
+          status: 500
+        }
+      );
+
+    }
+
+
+    /*
+     * ================================
+     * 4. PROMPT PRINCIPAL
+     * ================================
+     */
+
+    const prompt = `
+
+Você é um estrategista de conteúdo, copywriter e especialista em marketing digital para pequenos negócios, prestadores de serviços e empreendedores.
+
+Sua função NÃO é simplesmente criar posts genéricos.
+
+Você deve analisar as informações do negócio e transformar essas informações em conteúdos estratégicos capazes de gerar atenção, conexão, autoridade, desejo e ação.
+
+
+========================
+INFORMAÇÕES DO NEGÓCIO
+========================
+
+Segmento:
+${segmento}
+
+Público-alvo:
+${publico}
+
+Persona:
+${persona || "Não informado"}
+
+Produto ou serviço:
+${produto}
+
+Objetivo principal:
+${objetivo}
+
+Tom de comunicação:
+${tom || "Profissional, simples, humano e persuasivo"}
+
+Diferencial:
+${diferencial || "Não informado"}
+
+Tema, oferta ou assunto que deseja promover:
+${tema || "Não informado"}
+
+
+========================
+METODOLOGIA DE COPYWRITING
+========================
+
+Para cada conteúdo:
+
+1. IDENTIFIQUE A INTENÇÃO
+
+Determine silenciosamente qual é a melhor função daquele conteúdo:
+
+- chamar atenção;
+- gerar identificação;
+- educar;
+- despertar desejo;
+- quebrar uma objeção;
+- demonstrar autoridade;
+- gerar confiança;
+- estimular uma ação.
+
+
+2. CRIE UM GANCHO
+
+O início precisa fazer a pessoa querer continuar lendo.
+
+Evite frases genéricas como:
+
+"Confira essas dicas"
+
+"Você sabia?"
+
+"Hoje vamos falar sobre..."
+
+"5 dicas para melhorar seu negócio"
+
+
+Prefira ganchos baseados em:
+
+- problema real;
+- desejo;
+- curiosidade;
+- erro comum;
+- oportunidade;
+- contraste;
+- benefício;
+- objeção;
+- transformação.
+
+
+3. DESENVOLVA A IDEIA
+
+O conteúdo deve ter lógica.
+
+Sempre que fizer sentido, siga:
+
+Gancho
+→ Problema ou contexto
+→ Identificação
+→ Insight
+→ Solução/benefício
+→ Direcionamento
+→ CTA
+
+Não force essa estrutura quando outro formato for mais natural.
+
+
+4. ESCREVA PARA A PERSONA
+
+Use linguagem compatível com o público informado.
+
+Não escreva como um robô.
+
+Evite excesso de palavras difíceis, clichês e frases vazias.
+
+
+5. VENDA SEM PARECER UM ANÚNCIO O TEMPO TODO
+
+Nem todo conteúdo deve vender diretamente.
+
+Crie equilíbrio entre:
+
+- valor;
+- relacionamento;
+- autoridade;
+- desejo;
+- conversão.
+
+
+6. DIFERENCIAÇÃO
+
+Sempre que possível, utilize o diferencial informado pelo negócio.
+
+O conteúdo deve deixar claro por que aquela empresa ou profissional pode ser relevante para o cliente.
+
+
+7. CTA
+
+O CTA deve combinar com o objetivo do conteúdo.
+
+Exemplos:
+
+- comentar;
+- salvar;
+- compartilhar;
+- enviar mensagem;
+- pedir orçamento;
+- conhecer o serviço;
+- clicar;
+- chamar no WhatsApp.
+
+Não use sempre "clique no link".
+
+
+========================
+ESTRATÉGIA DOS 3 CONTEÚDOS
+========================
+
+Crie exatamente 3 ideias diferentes.
+
+
+CONTEÚDO 1 — CONEXÃO/ATENÇÃO
+
+Deve gerar identificação ou chamar atenção para um problema, desejo ou situação vivida pela persona.
+
+
+CONTEÚDO 2 — AUTORIDADE/VALOR
+
+Deve ensinar algo útil, quebrar uma crença, explicar algo ou demonstrar conhecimento.
+
+
+CONTEÚDO 3 — CONVERSÃO
+
+Deve aproximar a pessoa da solução oferecida pelo negócio, apresentando benefício, diferencial ou oportunidade de compra.
+
+
+Os três conteúdos devem ser diferentes entre si.
+
+Evite repetir o mesmo argumento.
+
+
+========================
+PROMPT PARA IMAGEM
+========================
+
+Crie também um prompt detalhado para geração de imagem.
+
+O prompt deve descrever:
+
+- pessoa ou objeto principal;
+- ambiente;
+- ação;
+- composição;
+- iluminação;
+- estilo visual;
+- enquadramento;
+- sensação transmitida;
+- elementos relacionados ao negócio.
+
+Não coloque textos dentro da imagem, a menos que isso seja essencial para o conceito.
+
+
+========================
+PROMPT PARA COPY
+========================
+
+Crie também um prompt que o usuário possa copiar e utilizar em outra IA para desenvolver ou adaptar aquela ideia.
+
+
+========================
+REGRAS
+========================
+
+- Responda em português do Brasil.
+- Não invente informações específicas sobre a empresa.
+- Não invente depoimentos.
+- Não invente números.
+- Não invente resultados.
+- Não invente provas.
+- Não prometa resultados garantidos.
+- Não utilize clichês excessivos.
+- Não repita estruturas.
+- Seja específico.
+- Priorize clareza.
+- Escreva de maneira humana.
+- O conteúdo precisa ser útil mesmo para quem ainda não conhece a empresa.
+- Crie exatamente 3 ideias.
+- Não crie uma quarta ideia.
+- Cada ideia deve ter todos os campos solicitados.
+- Retorne somente JSON válido.
+
+
+========================
+FORMATO OBRIGATÓRIO
+========================
+
+{
+  "ideas": [
+    {
+      "title": "Título da ideia",
+      "format": "Formato recomendado",
+      "objective": "Objetivo",
+      "hook": "Gancho",
+      "development": "Desenvolvimento da ideia",
+      "caption": "Legenda pronta",
+      "cta": "CTA",
+      "image_prompt": "Prompt detalhado para geração da imagem",
+      "copy_prompt": "Prompt pronto para copiar"
+    }
+  ]
+}
+
+`;
+
+
+    /*
+     * ================================
+     * 5. CHAMAR GEMINI
+     * ================================
+     */
+
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type":
+            "application/json",
+
+          "x-goog-api-key":
+            apiKey
+        },
+
+        body: JSON.stringify({
+
+          contents: [
+
+            {
+              role: "user",
+
+              parts: [
+
+                {
+                  text: prompt
+                }
+
+              ]
+            }
+
+          ],
+
+          generationConfig: {
+
+            temperature: 0.8,
+
+            responseMimeType:
+              "application/json",
+
+            responseSchema: {
+
+              type: "object",
+
+              properties: {
+
+                ideas: {
+
+                  type: "array",
+
+                  items: {
+
+                    type: "object",
+
+                    properties: {
+
+                      title: {
+                        type: "string"
+                      },
+
+                      format: {
+                        type: "string"
+                      },
+
+                      objective: {
+                        type: "string"
+                      },
+
+                      hook: {
+                        type: "string"
+                      },
+
+                      development: {
+                        type: "string"
+                      },
+
+                      caption: {
+                        type: "string"
+                      },
+
+                      cta: {
+                        type: "string"
+                      },
+
+                      image_prompt: {
+                        type: "string"
+                      },
+
+                      copy_prompt: {
+                        type: "string"
+                      }
+
+                    },
+
+                    required: [
+                      "title",
+                      "format",
+                      "objective",
+                      "hook",
+                      "development",
+                      "caption",
+                      "cta",
+                      "image_prompt",
+                      "copy_prompt"
+                    ]
+
+                  }
+
+                }
+
+              },
+
+              required: [
+                "ideas"
+              ]
+
+            }
+
+          }
+
+        })
+
+      }
+    );
+
+
+    /*
+     * ================================
+     * 6. VERIFICAR RESPOSTA DO GEMINI
+     * ================================
+     */
+
+    if (!response.ok) {
+
+      const errorText =
+        await response.text();
+
+      console.error(
+        "Gemini API error:",
+        errorText
+      );
+
+
+      return Response.json(
+        {
+          error:
+            "Não foi possível gerar os conteúdos agora."
+        },
+        {
+          status: 500
+        }
+      );
+
+    }
+
+
+    /*
+     * ================================
+     * 7. CONVERTER RESPOSTA
+     * ================================
+     */
+
+    const data =
+      await response.json();
+
+
+    /*
+     * O Gemini retorna o JSON dentro
+     * do campo text.
+     */
+
+    const text =
+      data
+        ?.candidates
+        ?.[0]
+        ?.content
+        ?.parts
+        ?.[0]
+        ?.text;
+
+
+    if (!text) {
+
+      console.error(
+        "Resposta inesperada do Gemini:",
+        JSON.stringify(data)
+      );
+
+
+      return Response.json(
+        {
+          error:
+            "A IA não retornou conteúdo."
+        },
+        {
+          status: 500
+        }
+      );
+
+    }
+
+
+    /*
+     * ================================
+     * 8. CONVERTER TEXTO EM JSON
+     * ================================
+     */
+
+    let result;
+
+    try {
+
+      result =
+        JSON.parse(text);
+
+    } catch (parseError) {
+
+      console.error(
+        "Erro ao converter JSON:",
+        parseError
+      );
+
+      console.error(
+        "Texto recebido:",
+        text
+      );
+
+
+      return Response.json(
+        {
+          error:
+            "A IA retornou um formato inválido. Tente novamente."
+        },
+        {
+          status: 500
+        }
+      );
+
+    }
+
+
+    /*
+     * ================================
+     * 9. VALIDAR RESULTADO
+     * ================================
+     */
+
+    if (
+      !result ||
+      !Array.isArray(result.ideas)
+    ) {
+
+      return Response.json(
+        {
+          error:
+            "A IA não retornou as ideias no formato esperado."
+        },
+        {
+          status: 500
+        }
+      );
+
+    }
+
+
+    /*
+     * Garante que teremos no máximo
+     * 3 ideias.
+     */
+
+    result.ideas =
+      result.ideas.slice(0, 3);
+
+
+    /*
+     * ================================
+     * 10. DEVOLVER AO FRONTEND
+     * ================================
+     */
+
+    return Response.json(
+      result
+    );
+
+
+  } catch (error) {
+
+    /*
+     * ================================
+     * ERRO GERAL
+     * ================================
+     */
+
+    console.error(
+      "Function error:",
+      error
+    );
+
+
+    return Response.json(
+      {
+        error:
+          "Ocorreu um erro ao gerar os conteúdos."
+      },
+      {
+        status: 500
+      }
+    );
+
+  }
+}
