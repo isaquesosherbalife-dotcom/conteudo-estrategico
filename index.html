@@ -10,14 +10,14 @@
   
   <style>
     :root {
-      --bg-color: #08090C;
+      --bg-color: #050608;
       --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(0, 102, 255, 0.25);
       --primary-blue: #0066FF;
       --primary-blue-hover: #0052CC;
+      --blue-glow: rgba(0, 102, 255, 0.4);
       --text-main: #FFFFFF;
       --text-muted: #94A3B8;
-      --accent-glow: rgba(0, 102, 255, 0.15);
     }
 
     * {
@@ -32,6 +32,13 @@
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
+      /* Glow azul no fundo superior */
+      background-image: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.18) 0%, transparent 50%);
+      background-repeat: no-repeat;
+    }
+
+    .highlight-blue {
+      color: var(--primary-blue);
     }
 
     /* Layout Containers */
@@ -48,8 +55,8 @@
     /* Header / Nav */
     header {
       padding: 24px 0;
-      border-bottom: 1px solid var(--card-border);
-      background: rgba(8, 9, 12, 0.8);
+      border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+      background: rgba(5, 6, 8, 0.85);
       backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
@@ -67,9 +74,6 @@
       font-size: 1.25rem;
       letter-spacing: -0.5px;
       color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .logo span {
@@ -80,21 +84,21 @@
     .hero {
       text-align: center;
       padding: 100px 0 60px;
-      position: relative;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(0, 102, 255, 0.1);
-      border: 1px solid rgba(0, 102, 255, 0.3);
-      color: var(--primary-blue);
-      padding: 6px 16px;
+      background: rgba(0, 102, 255, 0.15);
+      border: 1px solid var(--primary-blue);
+      color: #38BDF8;
+      padding: 6px 18px;
       border-radius: 100px;
       font-size: 0.875rem;
       font-weight: 600;
       margin-bottom: 24px;
+      box-shadow: 0 0 15px var(--blue-glow);
     }
 
     .hero h1 {
@@ -128,13 +132,14 @@
       text-decoration: none;
       border: none;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 24px var(--accent-glow);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 25px var(--blue-glow);
     }
 
     .btn-primary:hover {
       background-color: var(--primary-blue-hover);
       transform: translateY(-2px);
+      box-shadow: 0 6px 35px rgba(0, 102, 255, 0.6);
     }
 
     .hero-microcopy {
@@ -154,9 +159,9 @@
       margin: 0 auto;
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--card-border);
+      border: 2px solid var(--primary-blue);
       background: #000;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px var(--accent-glow);
+      box-shadow: 0 0 35px var(--blue-glow);
       aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
@@ -170,9 +175,9 @@
 
     /* Generator Section */
     .generator-section {
-      background: linear-gradient(180deg, var(--bg-color) 0%, #0F1117 100%);
-      border-top: 1px solid var(--card-border);
-      border-bottom: 1px solid var(--card-border);
+      background: linear-gradient(180deg, #050608 0%, #0A101D 100%);
+      border: 1px solid var(--primary-blue);
+      box-shadow: 0 0 30px rgba(0, 102, 255, 0.15);
       border-radius: 24px;
       padding: 60px 40px;
       position: relative;
@@ -219,33 +224,34 @@
     }
 
     input, textarea, select {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 102, 255, 0.3);
       border-radius: 8px;
       padding: 14px 16px;
       color: #FFF;
       font-size: 1rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
     input:focus, textarea:focus, select:focus {
       border-color: var(--primary-blue);
+      box-shadow: 0 0 12px var(--blue-glow);
     }
 
     /* Result Box */
     .result-container {
       margin-top: 40px;
       padding: 32px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
+      background: rgba(0, 102, 255, 0.05);
+      border: 1px solid var(--primary-blue);
       border-radius: 16px;
-      display: none; /* Exibido via JS */
+      display: none;
     }
 
     .result-header {
       margin-bottom: 24px;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 1px solid rgba(0, 102, 255, 0.2);
       padding-bottom: 16px;
     }
 
@@ -253,27 +259,28 @@
     .ai-live-tag {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: #10B981;
-      background: rgba(16, 185, 129, 0.1);
-      padding: 4px 10px;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #60A5FA;
+      background: rgba(0, 102, 255, 0.2);
+      border: 1px solid var(--primary-blue);
+      padding: 6px 14px;
       border-radius: 20px;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .pulse-dot {
       width: 8px;
       height: 8px;
-      background-color: #10B981;
+      background-color: var(--primary-blue);
       border-radius: 50%;
       animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.8); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 102, 255, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 102, 255, 0); }
     }
 
     /* Pricing Section */
@@ -286,23 +293,28 @@
 
     .price-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 16px;
       padding: 32px 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      transition: transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .price-card:hover {
+      border-color: var(--primary-blue);
+      transform: translateY(-4px);
     }
 
     .price-card.featured {
-      border-color: var(--primary-blue);
-      background: linear-gradient(180deg, rgba(0, 102, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 2px solid var(--primary-blue);
+      background: linear-gradient(180deg, rgba(0, 102, 255, 0.12) 0%, rgba(5, 6, 8, 0.4) 100%);
+      box-shadow: 0 0 30px rgba(0, 102, 255, 0.25);
     }
 
     .price-tag {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
       margin: 16px 0;
       color: var(--text-main);
@@ -315,7 +327,7 @@
     }
 
     .price-card h3 {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--primary-blue);
@@ -330,7 +342,7 @@
 
     /* Footer */
     footer {
-      border-top: 1px solid var(--card-border);
+      border-top: 1px solid rgba(0, 102, 255, 0.2);
       padding: 40px 0;
       text-align: center;
       color: var(--text-muted);
@@ -353,7 +365,7 @@
   <header>
     <div class="container nav-wrapper">
       <div class="logo">
-        CONTEÚDO <span>ESTRATÉGICO</span>
+        CONTEÚDO <span class="highlight-blue">ESTRATÉGICO</span>
       </div>
       <a href="#gerador" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Testar Grátis</a>
     </div>
@@ -363,7 +375,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-badge">⚡ Inteligência Artificial + Estratégia Comercial</div>
-      <h1>Seu negócio não precisa de mais posts. Precisa de conteúdo que tenha estratégia.</h1>
+      <h1>Seu negócio não precisa de mais posts. Precisa de conteúdo que tenha <span class="highlight-blue">estratégia.</span></h1>
       <p class="subtitle">Descubra gratuitamente 3 ideias de conteúdo personalizadas para o seu negócio e veja como transformar o que você sabe sobre sua empresa em conteúdo para atrair, conectar e vender.</p>
       <a href="#gerador" class="btn-primary">Criar minhas 3 ideias grátis</a>
       <p class="hero-microcopy">Sem cartão. Sem compromisso. Em poucos minutos.</p>
@@ -375,7 +387,6 @@
     <div class="container">
       <div class="video-wrapper">
         <div class="video-placeholder">
-          <!-- Espaço reservado para o vídeo de 45-60s -->
           <p style="font-size: 1.1rem; font-weight: 600; color: #FFF; margin-bottom: 8px;">Vídeo Demonstrativo (45-60s)</p>
           <p>Veja na prática como a nossa inteligência artificial gera seu conteúdo estratégico.</p>
         </div>
@@ -455,7 +466,7 @@
             <div class="price-tag">R$50 <span>/semana</span></div>
             <p class="description">Para manter seu perfil ativo sem precisar pensar no que postar.</p>
           </div>
-          <a href="https://wa.me/SEUNUMERO" class="btn-primary" style="background: transparent; border: 1px solid var(--card-border);">Contratar Essencial</a>
+          <a href="https://wa.me/SEUNUMERO" class="btn-primary" style="background: rgba(0,102,255,0.1); border: 1px solid var(--primary-blue);">Contratar Essencial</a>
         </div>
 
         <!-- Card 2 -->
@@ -475,7 +486,7 @@
             <div class="price-tag">R$90 <span>/semana</span></div>
             <p class="description">Para quem quer deixar uma parte maior da produção de conteúdo nas nossas mãos.</p>
           </div>
-          <a href="https://wa.me/SEUNUMERO" class="btn-primary" style="background: transparent; border: 1px solid var(--card-border);">Contratar Completo</a>
+          <a href="https://wa.me/SEUNUMERO" class="btn-primary" style="background: rgba(0,102,255,0.1); border: 1px solid var(--primary-blue);">Contratar Completo</a>
         </div>
       </div>
     </div>
